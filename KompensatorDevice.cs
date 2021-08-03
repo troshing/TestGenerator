@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EAKompensator
+{
+    [Serializable]
+    public class KompensatorDevice
+    {
+        public ushort ID_Module { get; set; }      // id платы Компенсатора
+
+        public float Km;                            // коэфф Усиления по входу АЦП U-
+        public float Bm;
+
+        public float Kp;                            // коэфф Усиления по входу АЦП U+
+        public float Bp;
+
+        public float Rbal_p;                        // R+ Балластн = 28 000 [Om]
+        public float Rbal_m;                        // R- Балластн = 28 000 [Om]
+
+        public float Ip_low;                        // I + [A] Тестовый ток при R > 40 kOm
+        public float Ip_high;                       // I + [A] Тестовый ток при R < 40 kOm
+
+        public float Im_low;                        // I - [A] Тестовый ток при R > 40 kOm
+        public float Im_high;                       // I - [A] Тестовый ток при R < 40 kOm
+
+        public float Ipreal_1mA;                    // Фактич после Калибровки I+
+        public float Imreal_1mA;                    // Фактич после Калибровки I-
+        public float Ip_izm;                        // Измеренные значения I+
+        public float Im_izm;                        // Измеренные значения I-
+
+        public short Ipcode;                       // ток Компенсатора I+ [codes] ЦАП
+        public short Imcode;                       // ток Компенсатора I- [codes] ЦАП
+
+        public byte Status;                         // Статус Компенсатора
+
+
+        public void SetDefaultData()
+        {
+            Km = 0.06924829157f;
+            Bm = 4.5906605922f;
+
+            Kp = 0.0686230248f;
+            Bp = 279.693002257f;
+            Rbal_m = 28976.0f;                   //  28 000 [Om]
+            Rbal_p = 28976.0f;                   //  28 000 [Om]
+
+            Ip_low = 0.00251f;
+            Ip_high = 0.00503f;
+            Im_low = 0.00251f;
+            Im_high = 0.00503f;
+            
+            Ipcode = 135;
+            Imcode = 135;
+            ID_Module = 0x00FE;
+        }
+    }
+}
