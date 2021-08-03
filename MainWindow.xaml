@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
-        Title="Программа Симулятор Комплекса" Height="490" Width="800" FontSize="14">
+        Title="Программа Симулятор Комплекса" Height="490" Width="900" FontSize="14">
 
-    <Grid x:Name="mainGrid" Height="450" Width="800">
+    <Grid x:Name="mainGrid" Height="450" Width="900">
         <StackPanel>
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="Меню">
@@ -28,7 +28,7 @@
 
             <TabControl x:Name="TabControl" FontWeight="Bold">
                 <TabItem Header="Настроечные параметры">
-                    <Grid x:Name="MyGrid1" Background="#FFE5E5E5" Width="800" Height="450">
+                    <Grid x:Name="MyGrid1" Background="#FFE5E5E5" Width="900" Height="450">
 
                         <Button x:Name="Btn_Save" HorizontalAlignment="Left" Margin="450,300,0,0" VerticalAlignment="Top" Click="Btn_Save_Click" Height="40" Width="80" FontWeight="Bold">
                             <TextBlock Text="Сохранить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
@@ -63,14 +63,17 @@
                         <Button x:Name="BtnSendDataSensor" HorizontalAlignment="Left" Margin="204,287,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="BtnSendDataSensor_OnClick">
                             <TextBlock Text="Послать Данные" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
                         </Button>
-                        <TextBox  x:Name="TxtRp" HorizontalAlignment="Left" Margin="100,197,0,0" Text="50000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="6" FontSize="14"/>
-                        <Label Content="R+" HorizontalAlignment="Left" Margin="130,158,0,0" VerticalAlignment="Top" FontSize="14"/>
-                        
-                        <TextBox  x:Name="TxtRm" HorizontalAlignment="Left" Margin="230,197,0,0" Text="10000000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" FontSize="14"/>
-                        <Label Content="R-" HorizontalAlignment="Left" Margin="260,158,0,0" VerticalAlignment="Top" FontSize="14"/>
-                        
-                        <TextBox  x:Name="TxtTau" HorizontalAlignment="Left" Margin="360,197,0,0" Text="0.00000001" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" FontSize="14"/>
-                        <Label Content="Tau" HorizontalAlignment="Left" Margin="390,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <TextBox  x:Name="TxtRp" HorizontalAlignment="Left" Margin="100,197,0,0" Text="50000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="6" TextAlignment="Center" FontSize="14"/>
+                        <Label Content="R+ , кОм" HorizontalAlignment="Left" Margin="120,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+
+                        <TextBox  x:Name="TxtRm" HorizontalAlignment="Left" Margin="230,197,0,0" Text="10000000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" TextAlignment="Center" FontSize="14"/>
+                        <Label Content="R- , кОм" HorizontalAlignment="Left" Margin="250,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+
+                        <TextBox  x:Name="TxtCs" HorizontalAlignment="Left" Margin="360,197,0,0" Text="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="4" TextAlignment="Center" FontSize="14"/>
+                        <Label Content="C , мкФ" HorizontalAlignment="Left" Margin="380,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+
+                        <TextBox  x:Name="TxtTau" HorizontalAlignment="Left" Margin="490,197,0,0" Text="0.0000001" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14" IsReadOnly="True"/>
+                        <Label Content="T , сек" HorizontalAlignment="Left" Margin="510,158,0,0" VerticalAlignment="Top" FontSize="14"/>
 
                     </Grid>
                 </TabItem>

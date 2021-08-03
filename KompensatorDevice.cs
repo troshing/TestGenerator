@@ -19,7 +19,14 @@ namespace EAKompensator
 
         public float Rbal_p;                        // R+ Балластн = 28 000 [Om]
         public float Rbal_m;                        // R- Балластн = 28 000 [Om]
+        public float Rb;                            // Rобщ балластн 
 
+        public float Rp;                            // R+  [Om]
+        public float Rm;                            // R-  [Om]
+
+        public float Cs;                            // Емкость сети
+        public float Ts;                            // Т сети 
+        public float Rs;                            // Общее R сети 
         public float Ip_low;                        // I + [A] Тестовый ток при R > 40 kOm
         public float Ip_high;                       // I + [A] Тестовый ток при R < 40 kOm
 
@@ -44,8 +51,8 @@ namespace EAKompensator
 
             Kp = 0.0686230248f;
             Bp = 279.693002257f;
-            Rbal_m = 28976.0f;                   //  28 000 [Om]
-            Rbal_p = 28976.0f;                   //  28 000 [Om]
+            Rbal_m = 30000;           //  28 000 [Om]
+            Rbal_p = 30000;           //  28 000 [Om]
 
             Ip_low = 0.00251f;
             Ip_high = 0.00503f;
@@ -55,6 +62,12 @@ namespace EAKompensator
             Ipcode = 135;
             Imcode = 135;
             ID_Module = 0x00FE;
+            Rb = Rbal_m * Rbal_p / (Rbal_p + Rbal_m);
+            Rs = 0.0f;                   //   [Om]
+            Cs = 0.0f;                   //   [uF]
+            Ts = 0.0000001f;             //   [sec]
+            Rm = 0.0f;                   //   [Om]
+            Rp = 0.0f;                   //   [Om]
         }
     }
 }

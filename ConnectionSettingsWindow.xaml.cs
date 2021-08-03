@@ -29,7 +29,7 @@ namespace EAKompensator
             InitializeComponent();            
             _master = master;
             GetPorts();
-            GetInfo();            
+            GetInfo();
         }
 
         /// <summary>

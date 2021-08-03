@@ -10,6 +10,8 @@
         Title="О программе" Height="200" Width="200">
     <Grid>
         <Button x:Name="Btn_Ok" Content="Ok" HorizontalAlignment="Center" Margin="0,126,0,0" VerticalAlignment="Top"  Width="74" Height="34" FontWeight="Bold" Click="Btn_Ok_OnClick"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,17,0,0" Text="Программа Эмулятор Комплекса"  FontSize="12" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" Width="168"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,92,0,0" Text="НПО ЭнергоАвтоматика 2021" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="10" TextAlignment="Center" FontWeight="Bold"/>
 
     </Grid>
 </Window>

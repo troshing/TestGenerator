@@ -108,8 +108,8 @@ namespace EAKompensator
         public void UpdateInfo()
         {
             float verSoft = 0.0f;
-            SendStartCommand();
-            ReadRegisters(register.Reg_VerSoftware);                // запрос [0x0042] Ver Software
+            // SendStartCommand();
+            ReadRegisters(register.Reg_VerSoftware);                // запрос [0x0036] Ver Software
             ParseAnswer(RegisterType.Float);
             verSoft = floatAnswer;
 

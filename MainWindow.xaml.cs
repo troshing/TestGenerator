@@ -40,6 +40,7 @@ namespace EAKompensator
             _mCalib.InitValues();
             myDevice.SetDefaultData();
             SetAllLabelsToNull();
+            AllButtonsOff();
         }
 
         private void MenuConnection_OnClick(object sender, RoutedEventArgs e)
@@ -166,8 +167,7 @@ namespace EAKompensator
             master.SendStartCommand();
             Thread.Sleep(200);
             master.WriteRegisters(register.Reg_CancelKalibration, data);                // [0x002A]
-            SetAllLabelsToNull();
-            myDevice.SetDefaultData();
+            SetAllLabelsToNull(); 
         }
 
 
@@ -350,6 +350,16 @@ namespace EAKompensator
             myDevice.SetDefaultData();
         }
 
+        private void AllButtonsOff()
+        {
+            btn_StartCalibration.IsEnabled = false;
+            Btn_Save.IsEnabled = false;
+            Btn_Apply.IsEnabled = false;
+            Btn_Cancel.IsEnabled = false;
+            Btn_EraseFlash.IsEnabled = false;
+            BtnGetDataFlash.IsEnabled = false;
+        }
+
         private void BtnApplyKoeff_OnClick(object sender, RoutedEventArgs e)
         {
             // Применить Коэфф по Напряжению
@@ -475,26 +485,30 @@ namespace EAKompensator
 
         private void BtnStartImpulse_OnClick(object sender, RoutedEventArgs e)
         {
-           master.SendCommand(register.Reg_StartImpulse);
-           BtnStartImpulse.IsEnabled = false;
-           Thread.Sleep(8000);
+            BtnStartImpulse.IsEnabled = false;
+            master.SendCommand(register.Reg_StartImpulse);
+  
+           Thread.Sleep(10000);
            master.DisplayiDialog("Команда отправлена");
            BtnStartImpulse.IsEnabled = true;
         }
 
         private void BtnSendDataSensor_OnClick(object sender, RoutedEventArgs e)
         {
-            float Rp = 50000.0f;            // 50 kOm
-            float Rm = 10000000.0f;         // 10 MOm
-            float Tau = 0.0000001f;         // 
 
-            Converter.ParseFloat(TxtRp.Text, ref Rp);
-            Converter.ParseFloat(TxtRm.Text, ref Rm);
-            Converter.ParseFloat(TxtTau.Text, ref Tau);
+            BtnSendDataSensor.IsEnabled = false;
+            Converter.ParseFloat(TxtRp.Text, ref myDevice.Rp);
+            Converter.ParseFloat(TxtRm.Text, ref myDevice.Rm);
+            Converter.ParseFloat(TxtCs.Text, ref myDevice.Cs);
 
-            master.SendDataTransfer(Rp,Rm,Tau);
-            Thread.Sleep(1000);
+            myDevice.Rs = 1.0f / ((1.0f / myDevice.Rp) + (1.0f / myDevice.Rm) + (1.0f / myDevice.Rb));
+            myDevice.Ts = myDevice.Rs * myDevice.Cs*0.000001f;
+
+            TxtTau.Text = myDevice.Ts.ToString("F5");
+            master.SendDataTransfer(myDevice.Rp, myDevice.Rm, myDevice.Ts);
+            Thread.Sleep(2000);
             master.DisplayiDialog("Данные отправлены");
+            BtnSendDataSensor.IsEnabled = true;
         }
     }
 }
