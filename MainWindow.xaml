@@ -29,30 +29,29 @@
             <TabControl x:Name="TabControl" FontWeight="Bold">
                 <TabItem Header="Настроечные параметры">
                     <Grid x:Name="MyGrid1" Background="#FFE5E5E5" Width="900" Height="450">
-
-                        <Button x:Name="Btn_Save" HorizontalAlignment="Left" Margin="450,300,0,0" VerticalAlignment="Top" Click="Btn_Save_Click" Height="40" Width="80" FontWeight="Bold">
+                        
+                        <Button x:Name="btn_StartCalibration" HorizontalAlignment="Left" Margin="450,330,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="btn_StartCalibration_Click">
+                            <TextBlock Text="Начать Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
+                            </TextBlock>
+                        </Button>
+                        <Button x:Name="Btn_Save" HorizontalAlignment="Left" Margin="550,330,0,0" VerticalAlignment="Top" Click="Btn_Save_Click" Height="40" Width="80" FontWeight="Bold">
                             <TextBlock Text="Сохранить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
                             </TextBlock>
                         </Button>
-                        <Button x:Name="Btn_Apply" HorizontalAlignment="Left" Margin="550,300,0,0" VerticalAlignment="Top" Click="Btn_Apply_Click" Width="80" Height="40" FontWeight="Bold">
+                        <Button x:Name="Btn_Apply" HorizontalAlignment="Left" Margin="650,330,0,0" VerticalAlignment="Top" Click="Btn_Apply_Click" Width="80" Height="40" FontWeight="Bold">
                             <TextBlock Text="Применить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
                             </TextBlock>
                         </Button>
-                        <Button x:Name="Btn_Cancel" HorizontalAlignment="Left" Margin="650,300,0,0" VerticalAlignment="Top" Click="Btn_Cancel_Click" Width="80" Height="40" FontWeight="Bold">
+                        <Button x:Name="Btn_Cancel" HorizontalAlignment="Left" Margin="750,330,0,0" VerticalAlignment="Top" Click="Btn_Cancel_Click" Width="80" Height="40" FontWeight="Bold">
                             <TextBlock Text="Отменить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
                             </TextBlock>
                         </Button>
 
-                        <Button x:Name="btn_StartCalibration" HorizontalAlignment="Left" Margin="350,300,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="btn_StartCalibration_Click">
-                            <TextBlock Text="Начать Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
-                        </Button>
-
-                        <Button x:Name="Btn_EraseFlash" HorizontalAlignment="Left" Margin="650,247,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="Btn_EraseFlash_Click">
+                        <Button x:Name="Btn_EraseFlash" HorizontalAlignment="Left" Margin="750,247,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="Btn_EraseFlash_Click">
                             <TextBlock Text="Стереть вн. Флэш" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
                             </TextBlock>
                         </Button>
-                        <Button x:Name="BtnGetDataFlash"  HorizontalAlignment="Left" Margin="539,248,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="BtnGetDataFlash_OnClick">
+                        <Button x:Name="BtnGetDataFlash"  HorizontalAlignment="Left" Margin="650,248,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="BtnGetDataFlash_OnClick">
                             <TextBlock Text="Считать из вн. Флэш" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
                             </TextBlock>
                         </Button>
@@ -63,7 +62,7 @@
                         <Button x:Name="BtnSendDataSensor" HorizontalAlignment="Left" Margin="204,287,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="BtnSendDataSensor_OnClick">
                             <TextBlock Text="Послать Данные" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
                         </Button>
-                        <TextBox  x:Name="TxtRp" HorizontalAlignment="Left" Margin="100,197,0,0" Text="50000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="6" TextAlignment="Center" FontSize="14"/>
+                        <TextBox  x:Name="TxtRp" HorizontalAlignment="Left" Margin="100,197,0,0" Text="50000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" TextAlignment="Center" FontSize="14"/>
                         <Label Content="R+ , кОм" HorizontalAlignment="Left" Margin="120,158,0,0" VerticalAlignment="Top" FontSize="14"/>
 
                         <TextBox  x:Name="TxtRm" HorizontalAlignment="Left" Margin="230,197,0,0" Text="10000000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" TextAlignment="Center" FontSize="14"/>
