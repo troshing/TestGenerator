@@ -62,10 +62,10 @@
                         <Button x:Name="BtnSendDataSensor" HorizontalAlignment="Left" Margin="204,287,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="BtnSendDataSensor_OnClick">
                             <TextBlock Text="Послать Данные" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
                         </Button>
-                        <TextBox  x:Name="TxtRp" HorizontalAlignment="Left" Margin="100,197,0,0" Text="50000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" TextAlignment="Center" FontSize="14"/>
+                        <TextBox  x:Name="TxtRp" HorizontalAlignment="Left" Margin="100,197,0,0" Text="50000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14"/>
                         <Label Content="R+ , кОм" HorizontalAlignment="Left" Margin="120,158,0,0" VerticalAlignment="Top" FontSize="14"/>
 
-                        <TextBox  x:Name="TxtRm" HorizontalAlignment="Left" Margin="230,197,0,0" Text="10000000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" TextAlignment="Center" FontSize="14"/>
+                        <TextBox  x:Name="TxtRm" HorizontalAlignment="Left" Margin="230,197,0,0" Text="10000000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14"/>
                         <Label Content="R- , кОм" HorizontalAlignment="Left" Margin="250,158,0,0" VerticalAlignment="Top" FontSize="14"/>
 
                         <TextBox  x:Name="TxtCs" HorizontalAlignment="Left" Margin="360,197,0,0" Text="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="4" TextAlignment="Center" FontSize="14"/>
