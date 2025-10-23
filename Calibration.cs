@@ -84,14 +84,14 @@ namespace EAKompensator
         }
         public void Calc_Koeff_Uplus()
         {
-            BUp = (_u2Plus * _u1PlusCode - _u1Plus * _u2PlusCode) / (_u1PlusCode - _u2PlusCode);
-            KUp = (_u1Plus - BUp) / _u1PlusCode;
+            // BUp = (_u2Plus * _u1PlusCode - _u1Plus * _u2PlusCode) / (_u1PlusCode - _u2PlusCode);
+            KUp = _u2Plus / _u2PlusCode; // (_u1Plus - BUp) / _u1PlusCode;
         }
 
         public void Calc_Koeff_Uminus()
         {
-            BUm = (_u2Minus * _u1MinusCode - _u1Minus * _u2MinusCode) / (_u1MinusCode - _u2MinusCode);
-            KUm = (_u1Minus - BUm) / _u1MinusCode;
+            // BUm = (_u2Minus * _u1MinusCode - _u1Minus * _u2MinusCode) / (_u1MinusCode - _u2MinusCode);
+            KUm = _u2Minus / _u2MinusCode;  // (_u1Minus - BUm) / _u1MinusCode;
         }
 
         public void InitValues()

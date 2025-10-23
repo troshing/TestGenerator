@@ -13,6 +13,9 @@ namespace EAKompensator
     /// </summary>
     public static class Converter
     {
+
+
+
         /// <summary>
         /// Преобразует массив ushort в массив byte
         /// </summary>
@@ -48,7 +51,42 @@ namespace EAKompensator
             for (int i = 0; i <= bArray.Length - 2; i += 2)
             {
                 byte[] array = { bArray[i + 1], bArray[i] };
-                uArray[j] = BitConverter.ToUInt16(array, 0);
+                uArray[j] = (ushort)((bArray[i + 1] << 8) | bArray[i]);
+                j++;
+            }
+
+            return uArray;
+        }
+
+        /// <summary>
+        /// Преобразует массив byte в строку
+        /// </summary>
+        /// <param name="bArray">исходный массив byte</param>
+        /// <returns>массив ushort</returns>
+        public static string ConvertByteArrayToString(byte[] bArray)
+        {
+            string uArray=""; 
+            for (int i = 0; i < bArray.Length; i ++)
+            {
+                uArray += (Char)(bArray[i]);
+            }
+
+            return uArray;
+        }
+
+        public static int[] ConvertByteArrayTointArray(byte[] bArray)
+        {
+            int[] uArray = new int[bArray.Length / 2];
+
+            int j = 0;
+
+            for (int i = 0; i <= bArray.Length - 2; i += 2)
+            {
+                //byte[] array = { bArray[i + 1], bArray[i] };
+                //uArray[j] = BitConverter.ToUInt16(array, 0);
+                uArray[j] = (bArray[i + 1] << 8) | bArray[i];
+
+
                 j++;
             }
 
@@ -80,7 +118,7 @@ namespace EAKompensator
         {
             byte[] array1 = BitConverter.GetBytes(values[1]);
             byte[] array2 = BitConverter.GetBytes(values[0]);
-            byte[] array12 = array1.Concat(array2).ToArray(); // LINQ
+            byte[] array12 = array1.Concat(array2).ToArray();       // LINQ
             return BitConverter.ToSingle(array12, 0);
         }
 
@@ -135,7 +173,7 @@ namespace EAKompensator
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Введите число !");
+                MessageBox.Show("Введите число !" + exc.ToString());
                 value = 0.0f;
             }
         }

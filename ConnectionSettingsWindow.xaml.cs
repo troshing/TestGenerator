@@ -75,7 +75,7 @@ namespace EAKompensator
         /// <param name="e"></param>
         private void BtnSaveSettings_Click(object sender, RoutedEventArgs e)
         {
-            _master.SlaveAddress = Convert.ToByte(txtbxAddress.Text);
+            _master.SlaveAddress = Convert.ToUInt16(txtbxAddress.Text);
             _master._SerialPort.PortName = cmbbxPorts.Text;
             _master._SerialPort.BaudRate = Convert.ToInt32(cmbbxBaudRate.Text);
             switch (cmbbxParity.Text)
@@ -99,7 +99,7 @@ namespace EAKompensator
             }
 
             // обновляет строку инфо в master и через привязку в UI
-            _master.UpdateInfo();
+            _master.UpdateInfo(_master.SlaveAddress);
 
             this.Close();            
         }

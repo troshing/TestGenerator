@@ -34,9 +34,15 @@ namespace EAKompensator
         public ushort Reg_SaveKalibration = 0x0028;
         public ushort Reg_StopKalibration = 0x0029;
         public ushort Reg_Reboot = 0x0020;
-        public ushort Reg_StartImpulse = 0x001A;                    // запуск импульса
+
+        public ushort Reg_StartImpulse = 0x001A;                    // запуск импульса одиночный режим
+        public ushort Reg_StartCycle = 0x007A;                      // запуск циклический режим
+
         public ushort Reg_UpdateData = 0x002C;
-        public ushort Reg_StartConv = 0x0038;
+        public ushort Reg_ReadStruct = 0x002B;                      // Чтение структуры из генератора
+        public ushort Reg_Ans_Data = 0x0030;                        // Чтение структуры данных из датчика     //(совпадает с Reg_IP_Codes)
+
+        public ushort Reg_StartConv = 0x001A;                       // Регистр запуск Измерения [W]
         public ushort Reg_StatusKalib = 0x003A;
         public ushort Reg_Reset_DACA = 0x003C;
         public ushort Reg_Reset_DACB = 0x003D;
@@ -61,6 +67,7 @@ namespace EAKompensator
         public ushort EmptyReg = 0x0000;
         public byte ReadFunc = 0x03;
         public byte WriteFunc = 0x06;
+        public byte WriteAcq = 0x2B;
         public ushort byteCount = 0x0001;
 
         public ushort Reg_VerSoftware = 0x0036;

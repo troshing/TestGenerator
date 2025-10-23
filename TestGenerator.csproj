@@ -12,4 +12,13 @@
     <PackageReference Include="SerialPortStream" Version="2.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="LiveCharts">
+      <HintPath>LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf">
+      <HintPath>..\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

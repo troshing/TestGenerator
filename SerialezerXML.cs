@@ -13,11 +13,11 @@ namespace EAKompensator
     [Serializable]
     public class SerializerXML
     {
-        public List<KompensatorDevice> LstsClass1 { get; set; }
+        public List<GeneratorDevice> LstsClass1 { get; set; }
        
         public SerializerXML()
         {
-            LstsClass1 = new List<KompensatorDevice>();
+            LstsClass1 = new List<GeneratorDevice>();
         }
     }
 }

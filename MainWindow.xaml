@@ -3,13 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+
         xmlns:local="clr-namespace:EAKompensator"
+
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         Title="Программа Симулятор Комплекса" Height="490" Width="900" FontSize="14">
 
     <Grid x:Name="mainGrid" Height="450" Width="900">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+
+        </Grid.ColumnDefinitions>
         <StackPanel>
             <Menu VerticalAlignment="Top">
                 <MenuItem Header="Меню">
@@ -27,59 +35,105 @@
             </Menu>
 
             <TabControl x:Name="TabControl" FontWeight="Bold">
-                <TabItem Header="Настроечные параметры">
-                    <Grid x:Name="MyGrid1" Background="#FFE5E5E5" Width="900" Height="450">
+                <TabItem Header="Симулятор периферийного" Height="27" Margin="0,0,0,0" VerticalAlignment="Center" IsEnabled="False" Visibility="Collapsed">
+                    <Grid x:Name="Grid10" Background="#FFF0EEEE" Width="900" Height="400">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"/>
 
-                        <Button x:Name="Btn_Save" HorizontalAlignment="Left" Margin="450,300,0,0" VerticalAlignment="Top" Click="Btn_Save_Click" Height="40" Width="80" FontWeight="Bold">
-                            <TextBlock Text="Сохранить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Симулятор УСПД" Height="35" Margin="0,-2,-20,0" VerticalAlignment="Top">
+                    <Grid x:Name="MyGrid1" Background="#FFF0EEEE" Width="900" Height="400">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="23*"/>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="30*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13*"/>
+                     
+                            <ColumnDefinition Width="40*"/>
+                        </Grid.ColumnDefinitions>
+                     -->
+                        <Button x:Name="btn_StartCalibration" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="btn_StartCalibration_Click" Grid.Column="5">
+                            <TextBlock Text="Начать Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
                         </Button>
-                        <Button x:Name="Btn_Apply" HorizontalAlignment="Left" Margin="550,300,0,0" VerticalAlignment="Top" Click="Btn_Apply_Click" Width="80" Height="40" FontWeight="Bold">
-                            <TextBlock Text="Применить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
+                        <Button x:Name="Btn_Save" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Click="Btn_Save_Click" Height="40" Width="80" FontWeight="Bold" Grid.Column="5">
+                            <TextBlock Text="Сохранить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
                         </Button>
-                        <Button x:Name="Btn_Cancel" HorizontalAlignment="Left" Margin="650,300,0,0" VerticalAlignment="Top" Click="Btn_Cancel_Click" Width="80" Height="40" FontWeight="Bold">
-                            <TextBlock Text="Отменить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
+                        <Button x:Name="Btn_Apply" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Click="Btn_Apply_Click" Width="80" Height="40" FontWeight="Bold" Grid.Column="5">
+                            <TextBlock Text="Применить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </Button>
+                        <Button x:Name="Btn_Cancel" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Click="Btn_Cancel_Click" Width="80" Height="40" FontWeight="Bold" Grid.Column="6">
+                            <TextBlock Text="Отменить Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
                         </Button>
 
-                        <Button x:Name="btn_StartCalibration" HorizontalAlignment="Left" Margin="350,300,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="btn_StartCalibration_Click">
-                            <TextBlock Text="Начать Калибровку" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
+                        <Button x:Name="Btn_EraseFlash" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="Btn_EraseFlash_Click" Grid.Column="5">
+                            <TextBlock Text="Стереть вн. Флэш" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </Button>
+                        <Button x:Name="BtnGetDataFlash"  HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="BtnGetDataFlash_OnClick" Grid.Column="6">
+                            <TextBlock Text="Считать из вн. Флэш" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
                         </Button>
 
-                        <Button x:Name="Btn_EraseFlash" HorizontalAlignment="Left" Margin="650,247,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="Btn_EraseFlash_Click">
-                            <TextBlock Text="Стереть вн. Флэш" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
+                        <Button x:Name="BtnStartImpulse"  HorizontalAlignment="Left" Margin="20,42,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="BtnStartImpulse_OnClick" Grid.Column="0" >
+                            <TextBlock Text="Старт Импульса" FontSize="12" TextWrapping="Wrap" TextAlignment="Center" RenderTransformOrigin="0.603,0.486"/>
                         </Button>
-                        <Button x:Name="BtnGetDataFlash"  HorizontalAlignment="Left" Margin="539,248,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="BtnGetDataFlash_OnClick">
-                            <TextBlock Text="Считать из вн. Флэш" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
-                        </Button>
-                        <Button x:Name="BtnStartImpulse"  HorizontalAlignment="Left" Margin="74,287,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="BtnStartImpulse_OnClick">
-                            <TextBlock Text="Старт Импульса" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
-                            </TextBlock>
-                        </Button>
-                        <Button x:Name="BtnSendDataSensor" HorizontalAlignment="Left" Margin="204,287,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="BtnSendDataSensor_OnClick">
-                            <TextBlock Text="Послать Данные" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-                        </Button>
-                        <TextBox  x:Name="TxtRp" HorizontalAlignment="Left" Margin="100,197,0,0" Text="50000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="9" TextAlignment="Center" FontSize="14"/>
-                        <Label Content="R+ , кОм" HorizontalAlignment="Left" Margin="120,158,0,0" VerticalAlignment="Top" FontSize="14"/>
 
-                        <TextBox  x:Name="TxtRm" HorizontalAlignment="Left" Margin="230,197,0,0" Text="10000000" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14"/>
-                        <Label Content="R- , кОм" HorizontalAlignment="Left" Margin="250,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <Label Content="Данные для датчиков" HorizontalAlignment="Left" Margin="7,140,0,0" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2" Grid.Column="1"/>
+                        <Label Content="Данные с датчиков" HorizontalAlignment="Left" Margin="7,260,0,0" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2" Grid.Column="1"/>
 
-                        <TextBox  x:Name="TxtCs" HorizontalAlignment="Left" Margin="360,197,0,0" Text="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="4" TextAlignment="Center" FontSize="14"/>
-                        <Label Content="C , мкФ" HorizontalAlignment="Left" Margin="380,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <Button x:Name="BtnStartProc"  HorizontalAlignment="Left" Margin="20,42,0,0" VerticalAlignment="Top" Width="80" Height="40" FontWeight="Bold" Click="BtnStartProc_OnClick" Grid.Column="2" OpacityMask="Black" BorderBrush="#FFBBBBBB" Foreground="Black" Background="LightGray">
+                            <TextBlock Text="Старт процесса" FontSize="12" TextWrapping="Wrap" TextAlignment="Center" RenderTransformOrigin="0.603,0.486"/>
+                        </Button>
 
-                        <TextBox  x:Name="TxtTau" HorizontalAlignment="Left" Margin="490,197,0,0" Text="0.0000001" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14" IsReadOnly="True"/>
-                        <Label Content="T , сек" HorizontalAlignment="Left" Margin="510,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <Button x:Name="BtnStopProc"  HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Width="80" Height="50" FontWeight="Bold" Click="BtnStopProc_OnClick" Background="#FF706E70" Grid.Column="2" IsEnabled="False">
+                            <TextBlock Text="Стоп процесса" FontSize="12" TextWrapping="Wrap" TextAlignment="Center" RenderTransformOrigin="0.603,0.486"/>
+                        </Button>
+
+                        <Button x:Name="BtnSendDataSensor" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Width="80" Height="50" Click="BtnSendDataSensor_OnClick" Grid.Column="0" IsEnabled="False">
+                            <TextBlock Text="Послать Данные в датчик" FontSize="12" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </Button>
+                        <TextBox  x:Name="TxtRp" Text="{Binding Rps}" HorizontalAlignment="Left" Margin="10,197,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14" Grid.Column="2"/>
+                        <Label Content="R+ , Ом" HorizontalAlignment="Left" Margin="25,158,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="2"/>
+
+                        <TextBox  x:Name="TxtRm" Text="{Binding Rms}"  HorizontalAlignment="Left" Margin="10,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14"/>
+
+                        <Label Content="R- , Ом" HorizontalAlignment="Left" Margin="25,158,0,0" VerticalAlignment="Top" FontSize="14"/>
+
+                        <TextBox  x:Name="TxtCs" Text="{Binding Cs}" HorizontalAlignment="Left" Margin="10,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="4" TextAlignment="Center" FontSize="14" Grid.Column="4"/>
+                        <Label Content="C , мкФ" HorizontalAlignment="Left" Margin="25,158,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="4"/>
+
+                        <TextBox  x:Name="TxtTau" Text="{Binding Taus }" HorizontalAlignment="Left" Margin="10,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14" IsReadOnly="True" Grid.Column="3"/>
+                        <Label Content="T , мСек" HorizontalAlignment="Left" Margin="25,158,0,0" VerticalAlignment="Top" FontSize="14" RenderTransformOrigin="1.726,0.631" Grid.Column="3"/>
+
+                        <TextBox  x:Name="TxtNdat" HorizontalAlignment="Left" Margin="10,330,0,0" Text="{Binding Ndats}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14" Grid.Column="0"/>
+                        <Label Content= " №  датчика " HorizontalAlignment="Left" Margin="15,290,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="0"/>
+
+                        <TextBox  x:Name="TxtRfid" Text="{Binding Rfs}" HorizontalAlignment="Left" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="40" MaxLines="1" MaxLength="10" TextAlignment="Center" FontSize="14" Grid.Column="2"/>
+                        <Label Content="Rфид , кОм" HorizontalAlignment="Left" Margin="20,290,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="2"/>
+                        <Label Content="Ручной режим" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2"/>
+                        <Label Content="Циклич. режим" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="2"/>
 
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Калибровка U">
-                    <Grid x:Name="MyGrid2" Width="800" Height="450" Background="#FFE5E5E5">
+                <TabItem Header="Калибровка U" Margin="20,-2,-44,0">
+                    <Grid x:Name="MyGrid2" Width="800" Height="400" Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="436*"/>
+                            <ColumnDefinition Width="149*"/>
+
+                            <ColumnDefinition Width="98*"/>
+                            <ColumnDefinition Width="117*"/>
+                        </Grid.ColumnDefinitions>
+
                         <Button x:Name="btnKalibrateUp" Height="40" HorizontalAlignment="Left" Margin="76,101,0,0" VerticalAlignment="Top" Click="BtnKalibrateUp_OnClick" FontWeight="Bold">
                             <TextBlock Text="Калибровать U+" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
                             </TextBlock>
@@ -88,8 +142,8 @@
                             <TextBlock Text="Калибровать U-" FontSize="12" TextWrapping="Wrap" TextAlignment="Center">
                             </TextBlock>
                         </Button>
-                        <TextBox x:Name="txtUminus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="318,50,0,0" Width="80" Height="40" MaxLines="1" MaxLength="5" FontSize="14" />
-                        <TextBox x:Name="txtUplus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,50,0,0" Width="80" Height="40" MaxLength="5" MaxLines="1" FontSize="14"/>
+                        <TextBox x:Name="txtUminus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="318,50,0,0" Width="80" Height="40" MaxLines="1" MaxLength="6" FontSize="14" />
+                        <TextBox x:Name="txtUplus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="76,50,0,0" Width="80" Height="40" MaxLength="6" MaxLines="1" FontSize="14"/>
                         <Button x:Name="btn_Calckoef" HorizontalAlignment="Left" Height="40" Width="80" Margin="76,0,0,0" VerticalAlignment="Center" Click="Btn_Calckoef_OnClick">
                             <TextBlock Text="Рассчитать коэфф." FontSize="12" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold">
                             </TextBlock>
@@ -100,40 +154,88 @@
                         <Label x:Name="lbl_Bp" Content="Bp=" HorizontalAlignment="Left" Margin="211,235,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
                         <Label x:Name="lbl_Km" Content="Km=" HorizontalAlignment="Left" Margin="339,192,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
                         <Label x:Name="lbl_Bm" Content="Bm=" HorizontalAlignment="Left" Margin="339,235,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                        <Button x:Name="BtnApplyKoeff" HorizontalAlignment="Left" Height="40" Width="80" Margin="76,200,0,0" VerticalAlignment="Center" Click="BtnApplyKoeff_OnClick">
+                        <Button x:Name="BtnApplyKoeff" HorizontalAlignment="Left" Height="40" Width="80" Margin="76,280,0,0" VerticalAlignment="Top" Click="BtnApplyKoeff_OnClick" >
                             <TextBlock Text="Применить коэфф." FontSize="12" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold">
                             </TextBlock>
                         </Button>
-                        <Button x:Name="Btn_StartPolling" HorizontalAlignment="Left" Margin="522,90,0,0" VerticalAlignment="Center" Height="40" Width="80" Click="Btn_StartPolling_OnClick">
+                        <Button x:Name="Btn_StartPolling" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Height="40" Width="80" Click="Btn_StartPolling_OnClick" Grid.Column="2">
                             <TextBlock x:Name="TxtPoll" Text="Начать опрос" FontSize="12" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold">
                             </TextBlock>
                         </Button>
-                        <Label x:Name="Lbl_UpValue" Content="U+=" HorizontalAlignment="Left" Margin="654,207,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-                        <Label x:Name="Lbl_UmValue" Content="U-=" HorizontalAlignment="Left" Margin="654,272,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
+                        <Label x:Name="Lbl_UpValue" Content= "{Binding Ups}" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Grid.Column="3"/>
+                        <Label x:Name="Lbl_UmValue" Content= "{Binding Ums}" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Grid.Column="3"/>
+                        <Label x:Name="code_p"  HorizontalAlignment="Left" Margin="174,56,0,0" VerticalAlignment="Top"/>
+                        <Label x:Name="code_m"  HorizontalAlignment="Left" Margin="415,56,0,0" VerticalAlignment="Top"/>
 
-                        <TextBlock x:Name="TxtBlk_Up" HorizontalAlignment="Left" Margin="703,0,0,0" Text="{Binding Ups}" TextWrapping="Wrap" VerticalAlignment="Center" Height="20"/>
-                        <TextBlock x:Name="txtBlk_Um" HorizontalAlignment="Left" Margin="703,281,0,0" Text="{Binding Ums}" TextWrapping="Wrap" VerticalAlignment="Top" Height="20"/>
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Калибровка I">
-                    <Grid x:Name="MyGrid3"  Background="#FFE5E5E5" Width="800" Height="450">
-                        <Button x:Name="Btn_CalcIp" Content="Старт" HorizontalAlignment="Left" Margin="50,114,0,0" VerticalAlignment="Top" Width="74" Height="34" Click="Btn_CalcIp_Click" FontWeight="Bold"/>
-                        <Button x:Name="Btn_CalcIm" Content="Старт" HorizontalAlignment="Left" Margin="201,114,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="Btn_CalcIm_Click" FontWeight="Bold"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="32,76,0,0" Text="Калибровка I+" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" Height="33" FontSize="15" FontWeight="Bold"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="186,76,0,0" Text="Калибровка I-" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" FontSize="15" FontWeight="Bold" Height="33"/>
-                        <Label x:Name="lbl_Ip" Content="I+=" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Label x:Name="lbl_Im" Content="I-=" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Label Content="Ток Компенсатора, мА" HorizontalAlignment="Left" Margin="457,38,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <TabItem Header="Калибровка I" Margin="45,-2,-200,0" HorizontalAlignment="Left" Width="136">
+                    <Grid x:Name="MyGrid3"  Background="#FFE5E5E5" Width="800" Height="400">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="103*"/>
+                            <ColumnDefinition Width="306*"/>
+                            <ColumnDefinition Width="391*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="Btn_CalcIp" Content="Старт" HorizontalAlignment="Left" Margin="50,114,0,0" VerticalAlignment="Top" Width="74" Height="34" Click="Btn_CalcIp_Click" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                        <Button x:Name="Btn_CalcIm" Content="Старт" HorizontalAlignment="Left" Margin="98,114,0,0" VerticalAlignment="Top" Height="34" Width="74" Click="Btn_CalcIm_Click" FontWeight="Bold" Grid.Column="1"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="32,76,0,0" Text="Калибровка I+" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" Height="33" FontSize="15" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="83,76,0,0" Text="Калибровка I-" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" FontSize="15" FontWeight="Bold" Height="33" Grid.Column="1"/>
+                        <Label x:Name="lbl_Ip" Content="I+=" HorizontalAlignment="Left" Margin="276,90,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <Label x:Name="lbl_Im" Content="I-=" HorizontalAlignment="Left" Margin="276,140,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <Label Content="Ток Генератора, мА" HorizontalAlignment="Left" Margin="48,38,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="2"/>
 
-                        <Label x:Name="lbl_Ipcode" Content="I+=" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Label x:Name="lbl_Imcode" Content="I-=" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Label Content="Ток Компенсатора, коды ЦАП" HorizontalAlignment="Left" Margin="457,200,0,0" VerticalAlignment="Top" FontSize="18"/>
-                        <Button x:Name="Btn_ApplyICode" Content="Применить" HorizontalAlignment="Right" Margin="0,330,100,0" VerticalAlignment="Top" Width="74" Height="34" FontWeight="Bold" Click="Btn_ApplyICode_OnClick"/>
+                        <Label x:Name="lbl_Ipcode" Content="I+=" HorizontalAlignment="Left" Margin="276,250,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <Label x:Name="lbl_Imcode" Content="I-=" HorizontalAlignment="Left" Margin="276,300,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <Label Content="Ток Генератора, коды ЦАП" HorizontalAlignment="Left" Margin="48,200,0,0" VerticalAlignment="Top" FontSize="18" Grid.Column="2"/>
+                        <Button x:Name="Btn_ApplyICode" Content="Применить" HorizontalAlignment="Right" Margin="0,330,66,0" VerticalAlignment="Top" Width="108" Height="34" FontWeight="Bold" Click="Btn_ApplyICode_OnClick" Grid.Column="2"/>
+                    </Grid>
+                </TabItem>
+                <!--*******************************************-->
+                <TabItem Header="Датчик" Height="35" Margin="25,-2,-100,0" VerticalAlignment="Top" IsEnabled="True"  Visibility="Visible">
+                    <Grid x:Name="Grid15" Background="#FFF0EEEE" Width="900" Height="400">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="191*"/>
+                            <ColumnDefinition Width="200*"/>
+                            <ColumnDefinition Width="500*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--*******************************************-->
+
+                        <lvc:CartesianChart Name="CalibChart"  Margin="10,5,5,27" Zoom="Xy" ZoomingSpeed ="0.5" Grid.Column="3" Cursor="Pen" >
+
+                            <lvc:CartesianChart.Series >
+                                <lvc:LineSeries x:Name="MyLineSeries" Values="{Binding Values}" PointGeometry="{x:Null}"  >
+                                </lvc:LineSeries>
+                            </lvc:CartesianChart.Series>
+                        </lvc:CartesianChart>
+
+                        <!--*******************************************-->
+
+                        <Label Content="Номер датчика заводской" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Width="190"  Grid.Column="1"/>
+                        <Label Content="Номер датчика сетевой" HorizontalAlignment="Left" Margin="1,60,0,0" VerticalAlignment="Top" Width="180" Grid.Column="1"/>
+                        <Label Content="Номер генератора" HorizontalAlignment="Left" Margin="1,95,0,0" VerticalAlignment="Top" Width="180" Grid.Column="1"/>
+
+
+
+                        <TextBox x:Name="FabNum" HorizontalAlignment="Left"  Margin="10,25,0,0" Text="{Binding SetFabNums}" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Grid.Column="2"/>
+                        <TextBox x:Name="SetNum" HorizontalAlignment="Left" Margin="10,60,0,0" Text="{Binding SetNums}" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Grid.Column="2"/>
+                        <TextBox x:Name="SetNumSys" HorizontalAlignment="Left" Margin="100,60,0,0" Text="{Binding SetNumSyss}" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Grid.Column="2"/>
+                        <TextBox x:Name="GenNum" HorizontalAlignment="Left" Margin="10,95,0,0" Text="{Binding SetGenNums}" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" Grid.Column="2"/>
+
+
+
+                        <Button Content="Считать" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="35" Width="110" Grid.Column="1" Click="Button_Read_Sence_Click"/>
+                        <Button x:Name="BCalibr" Content="Калибровать" HorizontalAlignment="Left" Margin="42,192,0,0" VerticalAlignment="Top" Height="35" Width="110" Grid.Column="2" Click="Button_Calibrate_Sence_Click" IsEnabled="False"/>
+                        <Button x:Name="BWrite" Content="Записать" HorizontalAlignment="Left" Margin="11,270,0,0" VerticalAlignment="Top" Height="35" Width="110" Grid.Column="1" Click="Button_Write_Sence_Click" IsEnabled="False"/>
+                        <Label x:Name="LCalibs" Content="нет ИХ" Grid.Column="2" HorizontalAlignment="Left"  Margin="20,166,0,0" VerticalAlignment="Top"  Width="110" Visibility="Hidden"/>
+                        <Label Content="=&gt;" Grid.Column="2" HorizontalAlignment="Left" Margin="77,59,0,0" VerticalAlignment="Top" Width="22" RenderTransformOrigin="-1.318,1.155" Height="21" FontWeight="Bold" FontSize="10"/>
+
                     </Grid>
                 </TabItem>
             </TabControl>
-            <TextBlock x:Name="txtblckStatus" Margin="1,-120,0,0" Text="{Binding Info}" Height="30" FontWeight="Bold"/>
+
+            <TextBlock x:Name="txtblckStatus" Margin="1,-45,0,0" Text="{Binding Info}" Height="38" FontWeight="Bold"/>
         </StackPanel>
 
     </Grid>
