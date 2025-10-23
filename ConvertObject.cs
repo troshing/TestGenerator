@@ -12,7 +12,7 @@ namespace ConvertObject
 		{
 			//Возвращает массив байт длинной, равной длинне структуры any типа T
 			//передаем данные из  структуры  any  в   массив байт 
-			byte[] Bdata = new byte[Marshal.SizeOf(typeof(T))];      //байтовый буфер размером  //во что кладем
+			byte[] Bdata = new byte[Marshal.SizeOf(typeof(T))];      // байтовый буфер размером  //во что кладем
 
 			GCHandle handle = GCHandle.Alloc(Bdata, GCHandleType.Pinned);
 
@@ -37,7 +37,7 @@ namespace ConvertObject
 			//читает структуру типа Т из потока FileStream
 
 			byte[] buffer = new byte[Marshal.SizeOf(typeof(T))];
-			fs.Read(buffer, 0, Marshal.SizeOf(typeof(T)));
+			fs.ReadAsync(buffer, 0, Marshal.SizeOf(typeof(T)));
 			GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 			T temp = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
 			handle.Free();

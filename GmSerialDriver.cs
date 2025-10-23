@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+
 using RJCP.IO.Ports;
 using System.Runtime.InteropServices;
 
@@ -12,7 +13,8 @@ namespace EAKompensator
 {
     public class GmSerialDriver
     {
-        public SerialPortStream serial = new SerialPortStream();
+        public RJCP.IO.Ports.SerialPortStream serial = new RJCP.IO.Ports.SerialPortStream();
+        // public SerialPortStream serial = new SerialPortStream();
         private RegisterGM mregsGm = new RegisterGM();
         private GeneratorType genStruct = new GeneratorType();
         private Struct_Sens snsStruct = new Struct_Sens();
@@ -28,13 +30,13 @@ namespace EAKompensator
             
         }
 
-        public void SetSerialPort(SerialPortStream streamPort)
+        public void SetSerialPort(RJCP.IO.Ports.SerialPortStream streamPort)
         {
             serial = streamPort;
             serial.ReadTimeout = 2000;
             serial.WriteTimeout = 2000;
         }
-
+        
         public void ReadRegister(ushort adrDevice, ushort addrReg, ref byte[] byteParser)
         {
             byte[] byteSendBuffer = new byte[10];                          // [ FE FE 00 03 XX XX 00 01 ] [ CRC_H CRC_L ]
@@ -47,7 +49,7 @@ namespace EAKompensator
                 //serial.FlushAsync();
                 serial.Write(byteSendBuffer, 0, byteSendBuffer.Length);             // Чтение 
                 // Thread.Sleep(100);
-                serial.Read(byteReadBuffer, 0, byteReadBuffer.Length);
+                serial.ReadAsync(byteReadBuffer, 0, byteReadBuffer.Length);
                 Array.Copy(byteReadBuffer, 0, byteParser, 0, byteReadBuffer.Length);
                 serial.Close();
             }
@@ -81,7 +83,7 @@ namespace EAKompensator
                 //serial.FlushAsync();
                 serial.Write(byteSendBuffer, 0, byteSendBuffer.Length);             // Чтение 
                 // Thread.Sleep(100);
-                serial.Read(byteReadBuffer, 0, byteReadBuffer.Length);
+                serial.ReadAsync(byteReadBuffer, 0, byteReadBuffer.Length);
                 Array.Copy(byteReadBuffer, 0, byteParser, 0, byteReadBuffer.Length);
                 serial.Close();
             }
