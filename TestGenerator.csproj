@@ -2,10 +2,15 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.17763.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>App.ico</ApplicationIcon>
+    <ApplicationIcon>icon app.ico</ApplicationIcon>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon app.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CIF.RJCP.SerialPortStream" Version="1.0.0" />

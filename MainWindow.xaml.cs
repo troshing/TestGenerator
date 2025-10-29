@@ -84,7 +84,6 @@ namespace EAKompensator
 
         private void MenuExit_OnClick(object sender, RoutedEventArgs e)
         {
-
             
             this.Close();
         }
@@ -117,8 +116,7 @@ namespace EAKompensator
 
             myDevice.Ip_izm = Ip;
             myDevice.Ipcode = Ipcode;
-            master.DisplayiDialog("Откалибровано I+");
-        
+            master.DisplayiDialog("Откалиброван I+");        
         }
 
         private void Btn_CalcIm_Click(object sender, RoutedEventArgs e)
@@ -149,7 +147,7 @@ namespace EAKompensator
      
             myDevice.Im_izm = Im;           // mA
             myDevice.Imcode = Imcode;
-            master.DisplayiDialog("Откалибровано I-");
+            master.DisplayiDialog("Откалиброван I-");
         }
 
         private void Btn_ApplyICode_OnClick(object sender, RoutedEventArgs e)
@@ -183,7 +181,6 @@ namespace EAKompensator
             master.WriteRegisters(addrGM, master.register.Reg_SaveKalibration, data);                  // [0x0028]
 
             master.DisplayiDialog("Калибровка успешно сохранена");
-
         }
 
         private void Btn_Apply_Click(object sender, RoutedEventArgs e)              // применить калибровку
@@ -278,7 +275,7 @@ namespace EAKompensator
             // _mCalib.Set_U1MinusCode(master.dwordAnswer);
 
             code_p.Content = master.dwordAnswer.ToString("x4")+" "+ master.dwordAnswer.ToString("f0");
-            master.DisplayiDialog("Откалибровано U+");
+            master.DisplayiDialog("Откалиброван U+");
         }
 
         private void BtnKalibrateUm_OnClick(object sender, RoutedEventArgs e)
@@ -304,7 +301,7 @@ namespace EAKompensator
             // master.ParseAnswer(RegisterType.DWord);
             // _mCalib.Set_U1PlusCode(master.dwordAnswer);
             code_m.Content = master.dwordAnswer.ToString("x4") + " " + master.dwordAnswer.ToString("f0");
-            master.DisplayiDialog("Откалибровано U-");
+            master.DisplayiDialog("Откалиброван U-");
 
         }
 
@@ -455,8 +452,7 @@ namespace EAKompensator
             {
                 TxtPoll.Text = "Начать опрос";
                 master.StopPoll();
-            }
-           
+            }           
         }
 
         private void BtnGetDataFlash_OnClick(object sender, RoutedEventArgs e)      // считать калибровку
@@ -611,8 +607,7 @@ namespace EAKompensator
                 {
                     BCalibr.IsEnabled = true;
                     BWrite.IsEnabled = true;
-                }
-                                                                                       
+                }                                                                                       
 
         }
         private void Button_Write_Sence_Click(object sender, RoutedEventArgs e)
